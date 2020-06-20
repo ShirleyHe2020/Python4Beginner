@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jun 20 17:10:46 2020
+
+@author: hexiyu
+
+
+"""
+"""
+
+# This part help you know the size of a specific image, take IMG_0516.png as an  example 
+import cv2 
+
+im = cv2.imread('/Users/hexiyu/Downloads/IMG_0516.png')
+print (type(im))
+print (im.shape)
+print (type(im.shape))
+"""
+
+
+
+
+#This part resize images to 416,416
+
+import os 
+from PIL import Image
+
+dir_img = os.path.normpath("/Users/hexiyu/Downloads/TempImg")
+dir_save =os.path.normpath("/Users/hexiyu/Downloads/ResizedImg")
+
+size = (416,416)
+
+list_temp = os.listdir(dir_img)
+list_img = list_temp[1:]
+
+for img_name in list_img:
+    img_path =os.path.normpath( dir_img+"/"+img_name)
+    old_img = Image.open(img_path)
+    save_path = os.path.normpath(dir_save+"/"+img_name)
+    old_img.resize(size, Image.ANTIALIAS).save(save_path)
+print("Images have been resized to 416")
